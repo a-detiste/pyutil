@@ -23,8 +23,6 @@ trove_classifiers=[
     u"Operating System :: OS Independent",
     u"Natural Language :: English",
     u"Programming Language :: Python",
-    u"Programming Language :: Python :: 2",
-    u"Programming Language :: Python :: 2.7",
     u"Programming Language :: Python :: 3",
     u"Programming Language :: Python :: 3.5",
     u"Programming Language :: Python :: 3.6",
