@@ -110,9 +110,6 @@ Using simplejson.tool from the shell to validate and pretty-print::
     Expecting property name: line 1 column 2 (char 2)
 """
 
-import pkg_resources
-pkg_resources.require("simplejson>=2.1.0")
-
 # Now we just import all of the contents of the simplejson package and
 # then overwrite it with a copy of the simplejson __init__.py edited
 # to make use_decimal=True the default.

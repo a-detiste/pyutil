@@ -37,6 +37,7 @@ classifiers = [
     "Topic :: Utilities",
     "Topic :: Software Development :: Libraries",
 ]
+dependencies = ["simplejson>=2.1.0"]
 
 [project.urls]
 "Homepage" = "https://github.com/tpltnt/pyutil"
