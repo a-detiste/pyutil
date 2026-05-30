@@ -6,13 +6,16 @@ authors = [
 description = "a collection of utilities for Python programmers"
 dynamic = ["version"]
 readme = "README.rst"
-license = { text = "GPL-2.0-or-later" }
+license = "GPL-2.0-or-later"
+license-files = [
+    "COPYING.GPL",
+    "COPYING.SPL.txt",
+    "COPYING.TGPPL.rst",
+]
 requires-python = ">=2.7"
 keywords = ["utilities", "twisted"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
-    "License :: DFSG approved",
     "Intended Audience :: Developers",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Unix",
