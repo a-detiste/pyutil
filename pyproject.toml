@@ -57,6 +57,16 @@ passphrase = 'pyutil.scripts.passphrase:main'
 requires = ["setuptools", "versioneer[toml]"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*", "docs*"]
+
+[tool.setuptools.package-data]
+pyutil = ["data/wordlist.txt"]
+
 [tool.versioneer]
 VCS = "git"
 style = "pep440"
