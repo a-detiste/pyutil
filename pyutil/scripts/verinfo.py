@@ -6,7 +6,7 @@ import exceptions
 class UsageError(exceptions.Exception): pass
 
 import sys
-import pkg_resources
+from importlib.metadata import version, distribution, PackageNotFoundError
 
 def main():
     if len(sys.argv) <= 1:
@@ -16,13 +16,26 @@ def main():
         PACKNAME=sys.argv[2]
     else:
         PACKNAME=DISTNAME
-    print("pkg_resources.require('%s') => " % (DISTNAME,))
-    print(pkg_resources.require(DISTNAME))
+
+    try:
+        dist = distribution(DISTNAME)
+        print(dist)
+        print("version:", version(DISTNAME))
+    except PackageNotFoundError:
+        print("ERROR: Distribution '%s' not installed" % DISTNAME)
+        return
+
     print("import %s;print %s => " % (PACKNAME, PACKNAME,))
-    x = __import__(PACKNAME)
-    print(x)
-    print("import %s;print %s.__version__ => " % (PACKNAME, PACKNAME,))
-    print(hasattr(x, '__version__') and x.__version__)
+
+    try:
+        x = __import__(PACKNAME)
+        print(x)
+    except ImportError as e:
+        print("ERROR importing %s: %s" % (PACKNAME, e))
+        return
+
+    print("import %s; print %s.__version__ => " % (PACKNAME, PACKNAME))
+    print(getattr(x, "__version__", None))
 
 if __name__ == "__main__":
     main()
