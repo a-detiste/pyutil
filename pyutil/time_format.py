@@ -13,7 +13,10 @@ def iso_utc_date(now=None, t=time.time):
 def iso_utc(now=None, sep=' ', t=time.time, suffix='Z'):
     if now is None:
         now = t()
-    return datetime.datetime.utcfromtimestamp(now).isoformat(sep)+suffix
+    # keep old timestamp format with new datetime
+    ts = datetime.datetime.fromtimestamp(now, datetime.UTC).isoformat(sep)
+    # skip the '+XX:XX' part and add suffix
+    return ts[0:-6]+suffix
 
 def iso_local(now=None, sep=' ', t=time.time):
     if now is None:
