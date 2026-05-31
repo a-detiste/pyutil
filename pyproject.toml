@@ -6,13 +6,16 @@ authors = [
 description = "a collection of utilities for Python programmers"
 dynamic = ["version"]
 readme = "README.rst"
-license = { text = "GPL-2.0-or-later" }
+license = "GPL-2.0-or-later"
+license-files = [
+    "COPYING.GPL",
+    "COPYING.SPL.txt",
+    "COPYING.TGPPL.rst",
+]
 requires-python = ">=2.7"
 keywords = ["utilities", "twisted"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: GNU General Public License (GPL)",
-    "License :: DFSG approved",
     "Intended Audience :: Developers",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: Unix",
@@ -30,9 +33,11 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Utilities",
     "Topic :: Software Development :: Libraries",
 ]
+dependencies = ["simplejson>=2.1.0"]
 
 [project.urls]
 "Homepage" = "https://github.com/tpltnt/pyutil"
@@ -55,3 +60,21 @@ passphrase = 'pyutil.scripts.passphrase:main'
 [build-system]
 requires = ["setuptools", "versioneer[toml]"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*", "docs*"]
+
+[tool.setuptools.package-data]
+pyutil = ["data/wordlist.txt"]
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "pyutil/_version.py"
+versionfile_build = "pyutil/_version.py"
+tag_prefix = ""
+parentdir_prefix = "pyutil-"

@@ -8,7 +8,7 @@ import argparse, math, random, sys
 
 from pyutil.mathutil import div_ceil
 
-from pkg_resources import resource_stream
+from importlib import resources
 
 def recursive_subset_sum(entropy_needed, wordlists):
     # Pick a minimalish set of numbers which sum to at least
@@ -54,7 +54,7 @@ def gen_passphrase(entropy, allwords):
     for (wle, wl) in wordlists_to_use:
         passphrase.append(sr.choice(wl))
         passphraseentropy += wle
-            
+
     return (u".".join(passphrase), passphraseentropy)
 
 def main():
@@ -66,7 +66,7 @@ def main():
 
     dicti = args.dictionary
     if not dicti:
-        dicti = resource_stream('pyutil', 'data/wordlist.txt')
+        dicti = resources.files("pyutil").joinpath("data/wordlist.txt").open("rb")
     allwords = set([x.decode('utf-8').strip().lower() for x in dicti.readlines()])
 
     passphrase, bits = gen_passphrase(args.bits, allwords)
